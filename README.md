@@ -27,6 +27,11 @@ src/main/java/com/yamamoto/cadastro_usuario
 │
 ├── business          # Regras de negócio (Service)
 ├── controller        # Camada de entrada (REST API)
+├── dto               # DTOs e mappers (entrada e saída da API)
+│   └── usuario
+│       ├── UsuarioRequest.java
+│       ├── UsuarioResponse.java
+│       └── UsuarioMapper.java
 ├── infrastructure
 │   ├── entitys       # Entidades JPA
 │   └── repository    # Repositórios (acesso ao banco)
@@ -73,6 +78,13 @@ POST /usuario
 }
 ```
 
+```return json
+{
+  "id": 1,
+  "email": "teste@email.com",
+  "nome": "Arthur"
+}
+```
 ---
 
 ### 🔍 Buscar usuário por email
@@ -142,6 +154,7 @@ Ou pela sua IDE (IntelliJ / VS Code / Eclipse).
 ## 📌 Observações
 
 * Banco H2 é volátil (dados são perdidos ao reiniciar)
+* A API utiliza DTOs para separar entrada e saída de dados, evitando expor diretamente as entidades do banco
 * Projeto focado em aprendizado de:
 
   * Arquitetura em camadas
@@ -153,7 +166,7 @@ Ou pela sua IDE (IntelliJ / VS Code / Eclipse).
 ## 📈 Melhorias futuras
 
 * [ ] Tratamento global de exceções
-* [ ] DTOs para desacoplamento
+* [x] DTOs para desacoplamento
 * [ ] Validação com Bean Validation (`@Valid`)
 * [ ] Paginação e listagem de usuários
 * [ ] Autenticação com JWT

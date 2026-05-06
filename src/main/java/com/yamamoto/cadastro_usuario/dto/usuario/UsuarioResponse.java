@@ -1,4 +1,4 @@
-package com.yamamoto.cadastro_usuario.dto;
+package com.yamamoto.cadastro_usuario.dto.usuario;
 
 public record UsuarioResponse(
     Integer id,

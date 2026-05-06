@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yamamoto.cadastro_usuario.business.UsuarioService;
-import com.yamamoto.cadastro_usuario.infrastructure.entitys.Usuario;
+import com.yamamoto.cadastro_usuario.dto.usuario.UsuarioRequest;
+import com.yamamoto.cadastro_usuario.dto.usuario.UsuarioResponse;
 
 import lombok.RequiredArgsConstructor;
-
 
 @RestController
 @RequestMapping("/usuario")
@@ -24,29 +24,28 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<Void> salvarUsuario (@RequestBody Usuario usuario){
-        usuarioService.salvarUsuario(usuario);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<UsuarioResponse> salvarUsuario(
+            @RequestBody UsuarioRequest request){
+        return ResponseEntity.ok(usuarioService.salvarUsuario(request));
     }
 
     @GetMapping
-    public ResponseEntity<Usuario> buscarUsuarioPorEmail(@RequestParam String email){
+    public ResponseEntity<UsuarioResponse> buscarUsuarioPorEmail(
+            @RequestParam String email){
         return ResponseEntity.ok(usuarioService.buscarUsuarioPorEmail(email));
     }
 
     @DeleteMapping
-    public ResponseEntity <Void> deletarUsuarioPorEmail (@RequestParam String email){
+    public ResponseEntity<Void> deletarUsuarioPorEmail(
+            @RequestParam String email){
         usuarioService.deletarUsuarioPorEmail(email);
         return ResponseEntity.ok().build();
     }
 
-     @PutMapping
-    public ResponseEntity <Void> atualizarUsuarioPorId (@RequestParam Integer id, 
-                                                        @RequestBody Usuario usuario){
-        usuarioService.atualizarUsuarioPorId(id, usuario);
-        return ResponseEntity.ok().build();
+    @PutMapping
+    public ResponseEntity<UsuarioResponse> atualizarUsuarioPorId(
+            @RequestParam Integer id,
+            @RequestBody UsuarioRequest request){
+        return ResponseEntity.ok(usuarioService.atualizarUsuarioPorId(id, request));
     }
-
-    
-
 }
