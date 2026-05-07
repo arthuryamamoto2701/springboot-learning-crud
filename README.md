@@ -24,7 +24,7 @@ API REST simples para gerenciamento de usuários, desenvolvida com **Spring Boot
 
 ## 📂 Estrutura do Projeto
 
-```text
+```bash
 src/main/java/com/yamamoto/cadastro_usuario
 │
 ├── business              # Regras de negócio (Service)
@@ -41,7 +41,7 @@ src/main/java/com/yamamoto/cadastro_usuario
 │       └── GlobalExceptionHandler.java
 │
 └── CadastroUsuarioApplication.java
-````
+```
 
 ---
 
@@ -51,13 +51,13 @@ O projeto utiliza banco em memória, ideal para testes.
 
 ### 🔗 Acessar console H2
 
-```text
+```bash
 http://localhost:8080/h2-console
 ```
 
 ### 🧾 Configurações
 
-```text
+```bash
 JDBC URL: jdbc:h2:mem:usuario
 User: sa
 Password: (vazio)
@@ -156,7 +156,7 @@ PUT /usuario?id=1
 
 A API utiliza Bean Validation para validar automaticamente os dados recebidos.
 
-### Regras atuais:
+### Regras atuais
 
 * Nome obrigatório
 * Nome com no mínimo 3 caracteres
@@ -189,7 +189,6 @@ A API utiliza Bean Validation para validar automaticamente os dados recebidos.
 * A API utiliza DTOs para separar entrada e saída de dados, evitando expor diretamente as entidades do banco
 * O projeto possui tratamento global de exceções utilizando `@RestControllerAdvice`
 * Projeto focado em aprendizado de:
-
   * Arquitetura em camadas
   * Spring Data JPA
   * APIs REST
@@ -232,5 +231,4 @@ Ou pela sua IDE (IntelliJ / VS Code / Eclipse).
 Desenvolvido por **Arthur Yamamoto**
 
 ---
-
-```
+````
