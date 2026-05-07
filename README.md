@@ -165,9 +165,9 @@ Ou pela sua IDE (IntelliJ / VS Code / Eclipse).
 
 ## 📈 Melhorias futuras
 
-* [ ] Tratamento global de exceções
+* [x] Tratamento global de exceções
 * [x] DTOs para desacoplamento
-* [ ] Validação com Bean Validation (`@Valid`)
+* [x] Validação com Bean Validation (`@Valid`)
 * [ ] Paginação e listagem de usuários
 * [ ] Autenticação com JWT
 * [ ] Testes automatizados
