@@ -1,3 +1,4 @@
+````md
 # springboot-learning-crud
 
 ---
@@ -17,27 +18,30 @@ API REST simples para gerenciamento de usuários, desenvolvida com **Spring Boot
 * H2 Database
 * Lombok
 * Maven
+* Bean Validation
 
 ---
 
 ## 📂 Estrutura do Projeto
 
-```
+```text
 src/main/java/com/yamamoto/cadastro_usuario
 │
-├── business          # Regras de negócio (Service)
-├── controller        # Camada de entrada (REST API)
-├── dto               # DTOs e mappers (entrada e saída da API)
+├── business              # Regras de negócio (Service)
+├── controller            # Camada de entrada (REST API)
+├── dto                   # DTOs e mappers (entrada e saída da API)
 │   └── usuario
 │       ├── UsuarioRequest.java
 │       ├── UsuarioResponse.java
 │       └── UsuarioMapper.java
 ├── infrastructure
-│   ├── entitys       # Entidades JPA
-│   └── repository    # Repositórios (acesso ao banco)
+│   ├── entitys           # Entidades JPA
+│   ├── repository        # Repositórios (acesso ao banco)
+│   └── exception         # Tratamento global de exceções
+│       └── GlobalExceptionHandler.java
 │
 └── CadastroUsuarioApplication.java
-```
+````
 
 ---
 
@@ -45,15 +49,15 @@ src/main/java/com/yamamoto/cadastro_usuario
 
 O projeto utiliza banco em memória, ideal para testes.
 
-### 🔗 Acessar console H2:
+### 🔗 Acessar console H2
 
-```
+```text
 http://localhost:8080/h2-console
 ```
 
-### 🧾 Configurações:
+### 🧾 Configurações
 
-```
+```text
 JDBC URL: jdbc:h2:mem:usuario
 User: sa
 Password: (vazio)
@@ -65,11 +69,11 @@ Password: (vazio)
 
 ### ➕ Criar usuário
 
-```
+```http
 POST /usuario
 ```
 
-**Body:**
+### Body
 
 ```json
 {
@@ -78,26 +82,39 @@ POST /usuario
 }
 ```
 
-```return json
+### Retorno
+
+```json
 {
   "id": 1,
   "email": "teste@email.com",
   "nome": "Arthur"
 }
 ```
+
 ---
 
 ### 🔍 Buscar usuário por email
 
-```
+```http
 GET /usuario?email=teste@email.com
+```
+
+### Retorno
+
+```json
+{
+  "id": 1,
+  "email": "teste@email.com",
+  "nome": "Arthur"
+}
 ```
 
 ---
 
 ### ❌ Deletar usuário por email
 
-```
+```http
 DELETE /usuario?email=teste@email.com
 ```
 
@@ -105,14 +122,24 @@ DELETE /usuario?email=teste@email.com
 
 ### 🔄 Atualizar usuário por ID
 
-```
+```http
 PUT /usuario?id=1
 ```
 
-**Body (parcial ou completo):**
+### Body (parcial ou completo)
 
 ```json
 {
+  "email": "novo@email.com",
+  "nome": "Novo Nome"
+}
+```
+
+### Retorno
+
+```json
+{
+  "id": 1,
   "email": "novo@email.com",
   "nome": "Novo Nome"
 }
@@ -125,12 +152,48 @@ PUT /usuario?id=1
 
 ---
 
+## ✅ Validações implementadas
+
+A API utiliza Bean Validation para validar automaticamente os dados recebidos.
+
+### Regras atuais:
+
+* Nome obrigatório
+* Nome com no mínimo 3 caracteres
+* Email obrigatório
+* Email deve possuir formato válido
+
+### Exemplo de erro de validação
+
+```json
+{
+  "nome": "Nome é obrigatório",
+  "email": "Email inválido"
+}
+```
+
+---
+
 ## 🧠 Regras de Negócio
 
 * Email é único no sistema
 * Busca por email retorna erro caso não exista
 * Atualização preserva dados não informados
 * Exclusão feita diretamente por email
+
+---
+
+## 📌 Observações
+
+* Banco H2 é volátil (dados são perdidos ao reiniciar)
+* A API utiliza DTOs para separar entrada e saída de dados, evitando expor diretamente as entidades do banco
+* O projeto possui tratamento global de exceções utilizando `@RestControllerAdvice`
+* Projeto focado em aprendizado de:
+
+  * Arquitetura em camadas
+  * Spring Data JPA
+  * APIs REST
+  * Bean Validation
 
 ---
 
@@ -151,18 +214,6 @@ Ou pela sua IDE (IntelliJ / VS Code / Eclipse).
 
 ---
 
-## 📌 Observações
-
-* Banco H2 é volátil (dados são perdidos ao reiniciar)
-* A API utiliza DTOs para separar entrada e saída de dados, evitando expor diretamente as entidades do banco
-* Projeto focado em aprendizado de:
-
-  * Arquitetura em camadas
-  * Spring Data JPA
-  * APIs REST
-
----
-
 ## 📈 Melhorias futuras
 
 * [x] Tratamento global de exceções
@@ -171,6 +222,8 @@ Ou pela sua IDE (IntelliJ / VS Code / Eclipse).
 * [ ] Paginação e listagem de usuários
 * [ ] Autenticação com JWT
 * [ ] Testes automatizados
+* [ ] Documentação com Swagger/OpenAPI
+* [ ] Password com BCrypt
 
 ---
 
