@@ -14,6 +14,7 @@ import com.yamamoto.cadastro_usuario.business.UsuarioService;
 import com.yamamoto.cadastro_usuario.dto.usuario.UsuarioRequest;
 import com.yamamoto.cadastro_usuario.dto.usuario.UsuarioResponse;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -25,7 +26,7 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<UsuarioResponse> salvarUsuario(
-            @RequestBody UsuarioRequest request){
+            @Valid @RequestBody UsuarioRequest request){
         return ResponseEntity.ok(usuarioService.salvarUsuario(request));
     }
 
@@ -45,7 +46,7 @@ public class UsuarioController {
     @PutMapping
     public ResponseEntity<UsuarioResponse> atualizarUsuarioPorId(
             @RequestParam Integer id,
-            @RequestBody UsuarioRequest request){
+            @Valid @RequestBody UsuarioRequest request){
         return ResponseEntity.ok(usuarioService.atualizarUsuarioPorId(id, request));
     }
 }
