@@ -2,11 +2,11 @@ package com.yamamoto.cadastro_usuario.business;
 
 import org.springframework.stereotype.Service;
 
-import com.yamamoto.cadastro_usuario.dto.usuario.UsuarioMapper;
 import com.yamamoto.cadastro_usuario.dto.usuario.UsuarioRequest;
 import com.yamamoto.cadastro_usuario.dto.usuario.UsuarioResponse;
 import com.yamamoto.cadastro_usuario.infrastructure.entitys.Usuario;
 import com.yamamoto.cadastro_usuario.infrastructure.repository.UsuarioRepository;
+import com.yamamoto.cadastro_usuario.mapper.UsuarioMapper;
 
 @Service
 public class UsuarioService {

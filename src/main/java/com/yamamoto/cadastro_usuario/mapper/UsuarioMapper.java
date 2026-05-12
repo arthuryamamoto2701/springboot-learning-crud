@@ -1,5 +1,7 @@
-package com.yamamoto.cadastro_usuario.dto.usuario;
+package com.yamamoto.cadastro_usuario.mapper;
 
+import com.yamamoto.cadastro_usuario.dto.usuario.UsuarioRequest;
+import com.yamamoto.cadastro_usuario.dto.usuario.UsuarioResponse;
 import com.yamamoto.cadastro_usuario.infrastructure.entitys.Usuario;
 
 public class UsuarioMapper {
@@ -25,6 +27,6 @@ public class UsuarioMapper {
                 usuario.getId(),
                 usuario.getNome(),
                 usuario.getEmail()
-        );
+         ); 
     }
 }
